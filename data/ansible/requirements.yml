@@ -2,3 +2,4 @@
 roles:
   - name: geerlingguy.ruby
   - name: geerlingguy.nodejs
+  - name: geerlingguy.mysql

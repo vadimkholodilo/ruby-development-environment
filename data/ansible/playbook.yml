@@ -22,3 +22,6 @@
         - nodejs_npm_global_packages:
           - name: '@angular/cli'
             version: 14.2.12
+    - role: geerlingguy.mysql
+      vars:
+        - mysql_root_password: 'root'
