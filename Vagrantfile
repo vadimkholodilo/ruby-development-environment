@@ -74,5 +74,8 @@ Vagrant.configure("2") do |config|
      export DEBIAN_FRONTEND=noninteractive
      apt update && apt upgrade -y
      apt install ansible -y
+     cd /vagrant_data/ansible
+     ansible-galaxy install -r requirements.yml
+     ansible-playbook playbook.yml
    SHELL
 end
