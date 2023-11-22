@@ -3,6 +3,12 @@
   hosts: localhost
   connection: local
   become: yes
+  pre_tasks:
+    - name: Install common dependencies
+      apt:
+        name: ['curl', 'wget', 'vim', 'git', 'make', 'zip', 'unzip']
+        state: present
+        update_cache: yes
   roles:
     - role: geerlingguy.ruby
       vars:
