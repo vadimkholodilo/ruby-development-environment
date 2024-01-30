@@ -6,7 +6,7 @@
   pre_tasks:
     - name: Install common dependencies
       apt:
-        name: ['curl', 'wget', 'vim', 'git', 'make', 'zip', 'unzip']
+        name: ["curl", "wget", "vim", "git", "make", "zip", "unzip"]
         state: present
         update_cache: yes
   roles:
@@ -15,13 +15,15 @@
         - ruby_version: 3.2.2
         - ruby_install_from_source: true
         # Version of Ruby in the url below must match ruby_version variable
-        - ruby_download_url: 'https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.2.tar.gz'
+        - ruby_download_url: "https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.2.tar.gz"
     - role: geerlingguy.nodejs
       vars:
         - nodejs_version: 16.x
         - nodejs_npm_global_packages:
-          - name: '@angular/cli'
-            version: 14.2.12
+            - name: yarn
+              version: 1.22.21
+            - name: "@angular/cli"
+              version: 14.2.12
     - role: geerlingguy.mysql
       vars:
-        - mysql_root_password: 'root'
+        - mysql_root_password: "root"
