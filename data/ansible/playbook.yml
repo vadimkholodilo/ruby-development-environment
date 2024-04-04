@@ -1,5 +1,5 @@
 ---
-- name: Configures Ruby development environment
+- name: Configures Ruby and Node.js development environment
   hosts: localhost
   connection: local
   become: yes
@@ -21,3 +21,26 @@
     - role: geerlingguy.mysql
       vars:
         - mysql_root_password: "root"
+  tasks:
+    - name: Check if nvm is installed
+      stat:
+        path: "/home/{{ ansible_user }}/.nvm"
+      register: nvm_path
+    - name: Setup NodeVersionManager and install node version
+      become: yes
+      become_flags: -i
+      become_user: "{{ ansible_user }}"
+      block:
+        - name: Install nvm
+          shell: >
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+          args:
+            executable: /bin/bash
+            chdir: "$HOME"
+            creates: "$HOME/.nvm/nvm.sh"
+        - name: Setup .profile of yournonrootuser
+          lineinfile:
+            path: "~/.profile"
+            line: source ~/.nvm/nvm.sh
+            create: yes
+      when: nvm_path.stat.exists == false
