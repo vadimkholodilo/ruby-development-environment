@@ -1,5 +1,4 @@
 ---
 roles:
-  - name: geerlingguy.ruby
-  - name: geerlingguy.nodejs
+  - name: rvm.ruby
   - name: geerlingguy.mysql
